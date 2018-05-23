@@ -1,4 +1,4 @@
-// This package is used to make queries to the Google Geocode API.
+// Package googlegeocode is used to make queries to the Google Geocode API.
 //
 // Initilizing the package will create one file called .geocoder-data on your machine that stores your api key and information necessary to ensure that api limits arean't exceed. It will prompt you to enter your google geocode api key for later use. If you enter an invalid api key or need to change it at a future date, delete the file named .geocoder-data and you will be prompted to enter the information again.
 package googlegeocode
@@ -85,7 +85,7 @@ func GetResults(address string) (results Results, err error) {
 	if geocoderInstance.queryLimitReached {
 		// Check if the query limit has
 		if time.Now().Before(geocoderInstance.queryLimitExpiration) {
-			return Results{}, fmt.Errorf("The maximum daily queries have been exceeded. The limit will be reset at midnight pacific time.")
+			return Results{}, fmt.Errorf("the maximum daily queries have been exceeded, and the limit will be reset at midnight pacific time")
 		}
 		// If the query limit has expired, set queryLimitReached to false
 		geocoderInstance.queryLimitReached = false
@@ -135,7 +135,7 @@ func GetResults(address string) (results Results, err error) {
 		// Add one day to that time to get midnight Pacific time, the time when the the query limit will expire.
 		geocoderInstance.queryLimitExpiration = beginingOfDayPacific.Add(time.Hour * 24)
 
-		return Results{}, fmt.Errorf("The maximum daily queries have been exceeded. The limit will be reset at midnight pacific time.")
+		return Results{}, fmt.Errorf("the maximum daily queries have been exceeded, and the limit will be reset at midnight pacific time")
 	}
 
 	return results, nil

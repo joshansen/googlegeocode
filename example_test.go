@@ -3,8 +3,7 @@ package googlegeocode_test
 import (
 	"encoding/json"
 	"fmt"
-	"googleGeocode"
-	"os"
+	"googlegeocode"
 )
 
 func ExampleGetResults() {
@@ -18,12 +17,12 @@ func ExampleGetResults() {
 	}
 
 	// Initialize variables
-	results := make([]googleGeocode.Results, len(addresses))
+	results := make([]googlegeocode.Results, len(addresses))
 	var err error
 
 	// Execute the a query for each result
 	for index, address := range addresses {
-		results[index], err = googleGeocode.GetResults(address)
+		results[index], err = googlegeocode.GetResults(address)
 		if err != nil {
 			fmt.Println(err)
 		}
